@@ -1,0 +1,21 @@
+.task {
+    border: solid 1px red;
+    text-align: center;
+    padding: 10px;
+    min-width: 30px;
+}
+
+.logTopBar {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 10px;
+}
+
+.logTitle {
+    grid-column: 4;
+}
+
+.minimizeLog {
+    grid-column: 8;
+    justify-self: end;
+}

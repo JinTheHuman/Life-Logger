@@ -1,0 +1,14 @@
+.AddLog {
+    display: flex;
+    flex-direction: column;
+    border: solid red 1px;
+    padding: 10px;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.suggestedTags {
+    margin: 5px;
+    display: flex;
+    justify-content: space-evenly;
+}
