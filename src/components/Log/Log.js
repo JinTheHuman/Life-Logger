@@ -31,7 +31,7 @@ const Log = ({
       className={"task " + (!showLog ? "notShowingLog" : "")}
     >
       <div className="logTopBar">
-        <div {...listeners} className="logTitle">
+        <div {...listeners} className="logTitle draggable">
           title: {title}
         </div>
         <MinimizeButton

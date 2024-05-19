@@ -12,7 +12,7 @@
 }
 
 .logTitle {
-    grid-column: 4;
+    grid-column: span 7;
 }
 
 .minimizeLog {
