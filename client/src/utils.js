@@ -55,20 +55,3 @@ export function getType(item) {
   if (id.includes("act")) return "act";
   return null;
 }
-
-export function loadLogs(path) {
-  const fs = require("fs");
-
-  fs.readFile(path, "utf8", (err, data) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-
-    const lines = data.split("\n");
-
-    lines.forEach((line, index) => {
-      console.log(`Line ${index + 1}: ${line}`);
-    });
-  });
-}

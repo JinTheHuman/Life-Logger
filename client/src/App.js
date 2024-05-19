@@ -206,8 +206,23 @@ function App() {
     }
   };
 
+  const postData = () => {
+    console.log("sending", JSON.stringify(acts));
+
+    fetch("http://localhost:5000/api/writeFile", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(acts),
+    })
+      .then((response) => response.text())
+      .then((data) => console.log(data))
+      .catch((error) => console.error("Error:", error));
+  };
   return (
     <div className="App">
+      <button onClick={postData}>post</button>
       <AddLog
         acts={acts}
         handleAddLog={handleAddLog}
