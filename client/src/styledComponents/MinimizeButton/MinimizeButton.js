@@ -12,15 +12,15 @@ const MinimizeButton = ({ initial, onClick, className }) => {
   return (
     <div
       onClick={handleClick}
-      className={className + " " + (minimized ? "flipped" : "")}
+      className={className + " minimizeButton " + (minimized ? "flipped" : "")}
     >
       <svg width="26" height="13" viewBox="0 0 68 38" fill="none">
         <path
           d="M4 34L34 4L64 34"
           stroke="black"
-          stroke-width="8"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     </div>

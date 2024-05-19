@@ -1,0 +1,22 @@
+.flipped {
+    transform: scaleY(-1);
+}
+
+.minimizeButton {
+    border-radius: 50%;
+    border: solid transparent 2px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    padding: 3px;
+}
+
+.minimizeButton:hover {
+    border: solid gray 2px;
+}
+.minimizeButton:active {
+    border: solid transparent 2px;
+}

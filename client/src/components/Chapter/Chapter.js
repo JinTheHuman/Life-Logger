@@ -6,10 +6,10 @@ import {
 } from "@dnd-kit/sortable";
 import Log from "../Log/Log";
 import { CSS } from "@dnd-kit/utilities";
-import "./Act.css";
-import MinimizeButton from "../../styledComponents/MinimizeButton";
+import "./Chapter.css";
+import MinimizeButton from "../../styledComponents/MinimizeButton/MinimizeButton";
 
-const Act = ({ id, logs, title, findGlobalIndex }) => {
+const Chapter = ({ id, logs, title, findGlobalIndex, minimizeLog }) => {
   const {
     attributes,
     setNodeRef,
@@ -20,21 +20,21 @@ const Act = ({ id, logs, title, findGlobalIndex }) => {
   } = useSortable({
     id: id,
     data: {
-      type: "container",
+      type: "chapter",
     },
   });
 
-  const [showAct, setShowAct] = useState(true);
+  const [showChapter, setShowChapter] = useState(true);
 
   return (
     <div className="Box">
-      <div className="actTopBar">
-        <div className="actTitle">{title}</div>
+      <div className="chapterTopBar">
+        <div className="chapterTitle">{title}</div>
         <MinimizeButton
-          className="minimizeAct"
+          className="minimizeChapter"
           initial={false}
           onClick={() => {
-            setShowAct(!showAct);
+            setShowChapter(!showChapter);
           }}
         ></MinimizeButton>
       </div>
@@ -51,12 +51,13 @@ const Act = ({ id, logs, title, findGlobalIndex }) => {
           items={logs.map((log) => log.id)}
           strategy={verticalListSortingStrategy}
         >
-          {showAct
+          {showChapter
             ? logs.map((log) => (
                 <Log
                   key={log.id}
                   {...log}
                   findGlobalIndex={findGlobalIndex}
+                  minimizeLog={minimizeLog}
                 ></Log>
               ))
             : null}
@@ -66,4 +67,4 @@ const Act = ({ id, logs, title, findGlobalIndex }) => {
   );
 };
 
-export default Act;
+export default Chapter;

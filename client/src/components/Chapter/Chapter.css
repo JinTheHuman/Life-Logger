@@ -5,7 +5,7 @@ div .Box {
     display: flex;
     flex-direction: column;
     width: 50vw;
-    align-items: center;
+    align-items: center; 
 }
 
 .view {
@@ -15,17 +15,17 @@ div .Box {
     width: 100%;
 }
 
-.actTopBar {
+.chapterTopBar {
     display: flex;
     align-items: center;
     width: 100%;
 }
 
-.minimizeAct {
+.minimizeChapter {
     margin-left: auto;
 }
 
-.actTitle {
+.chapterTitle {
     flex: 1;
     font-size: 30px;
     padding: 5px;

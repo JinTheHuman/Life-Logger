@@ -2,9 +2,12 @@ import React from "react";
 import "./AddLog.css";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import DropdownMenu from "../../styledComponents/DropdownMenu/DropdownMenu";
 
 const AddLog = ({ acts, handleAddLog, existingTags }) => {
   const [selectedAct, setselectedAct] = useState(null);
+  const [selectedActIndex, setselectedActIndex] = useState(null);
+  const [selectedChapter, setselectedChapter] = useState(null);
   const [showModule, setShowModule] = useState(true);
 
   const [tagInputValue, setTagInputValue] = useState("");
@@ -39,12 +42,16 @@ const AddLog = ({ acts, handleAddLog, existingTags }) => {
   };
 
   const handleOptionChange = (option) => {
-    setselectedAct(option);
+    setselectedChapter(option);
+  };
+
+  const handleActOptionChange = (actId) => {
+    setselectedAct(actId);
+    setselectedActIndex(acts.findIndex((act) => act.id === actId));
   };
 
   const [title, setTitle] = useState("");
   const handleTitleChange = (e) => {
-    console.log(e.target.value);
     setTitle(e.target.value);
   };
 
@@ -54,28 +61,42 @@ const AddLog = ({ acts, handleAddLog, existingTags }) => {
   };
 
   const handleClick = () => {
+    if (title === "" || !selectedAct || !selectedChapter) return;
+
     const newLog = {
       id: `log-${uuidv4()}`,
       title: title,
       description: description,
       dateModified: Date.now(),
-      act: selectedAct,
+      chapter: selectedChapter,
       tags: selectedTags,
+      expanded: false,
     };
-    handleAddLog(newLog);
+    handleAddLog(newLog, selectedAct, selectedChapter);
+    setSelectedTags([]);
+    setSuggestedTags([]);
+    setselectedAct(null);
+    setselectedChapter(null);
   };
 
   return (
     <div className="AddLog">
-      <h3
+      <div
         onClick={() => {
           setShowModule(!showModule);
         }}
       >
         Add Log
-      </h3>
+      </div>
       {showModule ? (
         <>
+          <DropdownMenu
+            options={acts.map((act) => act.title)}
+            optionIds={acts.map((act) => act.id)}
+            onSelect={handleActOptionChange}
+            promptText="Select Act"
+            showDefault={!selectedAct}
+          ></DropdownMenu>
           <label>
             Title <input type="text" onChange={handleTitleChange} />
           </label>
@@ -83,17 +104,20 @@ const AddLog = ({ acts, handleAddLog, existingTags }) => {
           <label>
             Description <input type="text" onChange={handleDescriptionChange} />
           </label>
-          {acts.map((act) => (
-            <label key={act.id}>
-              <input
-                type="radio"
-                value={act.id}
-                checked={selectedAct === act.id}
-                onChange={() => handleOptionChange(act.id)}
-              />
-              {act.title}
-            </label>
-          ))}
+          <div>Chapter</div>
+          {selectedAct
+            ? acts[selectedActIndex].chapters.map((chapter) => (
+                <label key={chapter.id}>
+                  <input
+                    type="radio"
+                    value={chapter.id}
+                    checked={selectedChapter === chapter.id}
+                    onChange={() => handleOptionChange(chapter.id)}
+                  />
+                  {chapter.title}
+                </label>
+              ))
+            : null}
           <div className="suggestedTags">
             {selectedTags.map((tag, index) => (
               <button key={index} onClick={() => unselectTag(index)}>
