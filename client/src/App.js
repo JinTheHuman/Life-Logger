@@ -220,9 +220,20 @@ function App() {
       .then((data) => console.log(data))
       .catch((error) => console.error("Error:", error));
   };
+
+  const readData = async () => {
+    const response = await fetch("http://localhost:5000/api/readFile", {
+      method: "GET",
+    });
+    const data = await response.text();
+    const newActs = JSON.parse(data);
+    setActs(newActs);
+  };
+
   return (
     <div className="App">
       <button onClick={postData}>post</button>
+      <button onClick={readData}>get</button>
       <AddLog
         acts={acts}
         handleAddLog={handleAddLog}

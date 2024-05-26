@@ -36,7 +36,7 @@ app.post("/api/writeFile", jsonParser, (req, res) => {
   const data = req.body;
   console.log("Received data:", data[0].chapters);
 
-  const newData = "Data to write to the file";
+  const newData = JSON.stringify(data);
 
   fs.writeFile(filePath, newData, (err) => {
     if (err) {

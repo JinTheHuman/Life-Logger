@@ -1,1 +1,1 @@
-Data to write to the file
+[{"id":"act1","title":"Early","chapters":[{"id":"chapter1","title":"Pre Primary","logs":[]},{"id":"chapter2","title":"Primary School","logs":[{"id":"log-8a979ff7-7190-439e-b5e2-d55412b5fde1","title":"Poop","description":"","dateModified":1716687080124,"chapter":"Primary School","tags":[],"expanded":false}]}]},{"id":"act2","title":"Late","chapters":[{"id":"chapter3","title":"Uni","logs":[]},{"id":"chapter4","title":"High school","logs":[]}]}]
